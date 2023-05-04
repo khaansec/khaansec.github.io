@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: Khaansec.Github.io
+title: Khaansec
 
 # Your name to show in the footer
 author: Khaansec
@@ -20,7 +20,7 @@ author: Khaansec
 ###############################################
 
 navbar-links:
-  About Me: "Security analyst with an inclination towards offensive security"
+  About Me: "aboutme"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
