@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Weaponzing Shortcut Modification
+title: Weaponizing Shortcut Modification
 subtitle: Exploring T1547.009 
 cover-img: /assets/img/honk.png
 thumbnail-img: /assets/img/shortcut.png
