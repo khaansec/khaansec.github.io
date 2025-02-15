@@ -3,7 +3,7 @@ layout: post
 title: Bandit Labs
 subtitle: Exploring T1547.009 
 cover-img: /assets/img/honk.png
-thumbnail-img: /assets/img/shortcut.png
+thumbnail-img: /assets/img/domo.png
 share-img: /assets/img/shortcut.png
 tags: [poc, shortcut]
 ---
