@@ -11,8 +11,11 @@ tags: [poc, shortcut]
 Many time I have started Over The Wire's Bandit labs, but never have I gone through the whole thing. I am documenting my journey through the process.
 
 Level 0
+
 Level 0 → Level 1
+
 Level 1 → Level 2
+
 Level 2 → Level 3
 Level 3 → Level 4
 Level 4 → Level 5
