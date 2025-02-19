@@ -1,38 +1,38 @@
 ---
 layout: post
 title: Bandit Labs
-subtitle: Exploring T1547.009 
+subtitle: Getting practice with common Linux commands
 cover-img: /assets/img/honk.png
 thumbnail-img: /assets/img/domo.png
-share-img: /assets/img/shortcut.png
-tags: [poc, shortcut]
+share-img: /assets/img/domo.png
+tags: []
 ---
 
-Many time I have started Over The Wire's Bandit labs, but never have I gone through the whole thing. I am documenting my journey through the process.
+Many times have I started Over The Wire's Bandit labs, but never have I gone through the whole thing. I am documenting my journey through the process. This is a nice way to be re-introduced to Linux commands that I do not frequently use
 
 Level 0
 - Given by the website
 
 Level 0 → Level 1
-- simple cat to a file
+- Simple ```cat``` to a file
 
 Level 1 → Level 2
-- things start out a little sneaky. the file is named '-', which if you try to cat as normal, cat interprets it as a commandline argument. instead, we need to redirect the input to the cat command, like 'cat < -'
+- Things start out a little sneaky. the file is named ```-```, which if you try to ```cat``` as normal, ```cat``` interprets it as a commandline argument. instead, we need to redirect the input to the cat command, like ```cat < -```
 
 Level 2 → Level 3
-- here we just need to escape the white space between the words in the file name
+- Here we just need to escape the white space between the words in the file name, such as ```cat hello\ world.txt```
 
 Level 3 → Level 4
-- this make use of . to hide files. a simple ```ls -lah``` will display it
+- This makes use of ```.``` to hide files. a simple ```ls -lah``` will display it
 
 Level 4 → Level 5
-- my solution here was to script an input redirection to find which one might have the pass, like ```for i in {0..9}; do cat < -file0$i; done```
+- My solution here was to script an input redirection to find which one might have the pass, like ```for i in {0..9}; do cat < -file0$i; done```
 
 Level 5 → Level 6
-- this is where things started ramping up a bit. i started to employ chat gpt, but limited my questions so as to not just get a full working script. i lacked a bit of knowledge here so i just wanted to see what pieces i could mash together. this is what i came up with: ```find ./ -type f -exec head -n 1 {} \; | awk 'length == 32'```
+- This is where things started ramping up a bit. I started to employ chat gpt, but limited my questions so as to not just get a full working script. I lacked a bit of knowledge here so i just wanted to see what pieces I could mash together. this is what i came up with: ```find ./ -type f -exec head -n 1 {} \; | awk 'length == 32'```
 
 Level 6 → Level 7
-- from here i stopped yoloing and read the instructions for each challenge
+- From here I stopped yolo'ing and read the instructions for each challenge
 
 Level 7 → Level 8
 
@@ -92,7 +92,7 @@ Level 33 → Level 34
 
 | Type | Link |
 | :------ | :--- |
-| PoC | [https://v3ded.github.io/redteam/abusing-lnk-features-for-initial-access-and-persistence](https://v3ded.github.io/redteam/abusing-lnk-features-for-initial-access-and-persistence) |
-| PoC | [https://www.ired.team/offensive-security/initial-access/phishing-with-ms-office/phishing-ole-+-lnk](https://www.ired.team/offensive-security/initial-access/phishing-with-ms-office/phishing-ole-+-lnk) |
+| PoC ||
+| PoC ||
 
 ```
