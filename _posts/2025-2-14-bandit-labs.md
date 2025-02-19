@@ -40,6 +40,7 @@ Level 6 → Level 7
   ```find / -user bandit7 -group bandit6 -size -50 2>/dev/null```
 
 Level 7 → Level 8
+- This one was very straightforward, just based off of how grep works by default; it will print the whole line. You can also add the line number here, in case the instructions meant above or below, not just besides. ```cat data.txt | grep -n millionth```. 
 
 Level 8 → Level 9
 
