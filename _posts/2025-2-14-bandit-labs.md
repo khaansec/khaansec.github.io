@@ -32,7 +32,12 @@ Level 5 → Level 6
 - This is where things started ramping up a bit. I started to employ chat gpt, but limited my questions so as to not just get a full working script. I lacked a bit of knowledge here so i just wanted to see what pieces I could mash together. this is what i came up with: ```find ./ -type f -exec head -n 1 {} \; | awk 'length == 32'```
 
 Level 6 → Level 7
-- From here I stopped yolo'ing and read the instructions for each challenge
+- From here I stopped yolo'ing and read the instructions for each challenge. This one said that the following criteria must be met: owned by user bandit7, owned by group bandit6, and 33 bytes in size.
+  The home for bandit 6 was empty. When I went up in the file system I saw a bunch of different folders with different owners and permissions. I first tried to repurpose some earlier code, which worked, but did not find the pass
+  ```find ./ -size -35 2>/dev/null -exec head -n 1 {} \;```
+  I then ran ```find ./ -group bandit6``` and realized that some of the critical criteria were missing. No files were owned by the group bandit 6 in the home directory. The prompt also states that it is somewhere on the server, not necessarily the home direcotry. I was still not finding it with this, however: ```find / -user bandit7 -group bandit6 -size 33 2>/dev/null```
+  From here I upped the size limit just in case and actually found something at /var/lib/dpkg/info/bandit7.password. What is strange is that the file size is definitely 33 bytes. Not sure why the size filter was not working.
+  ```find / -user bandit7 -group bandit6 -size -50 2>/dev/null```
 
 Level 7 → Level 8
 
