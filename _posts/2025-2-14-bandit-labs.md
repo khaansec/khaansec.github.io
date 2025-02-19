@@ -17,16 +17,22 @@ Level 0 → Level 1
 - simple cat to a file
 
 Level 1 → Level 2
+- things start out a little sneaky. the file is named '-', which if you try to cat as normal, cat interprets it as a commandline argument. instead, we need to redirect the input to the cat command, like 'cat < -'
 
 Level 2 → Level 3
+- here we just need to escape the white space between the words in the file name
 
 Level 3 → Level 4
+- this make use of . to hide files. a simple ```ls -lah``` will display it
 
 Level 4 → Level 5
+- my solution here was to script an input redirection to find which one might have the pass, like ```for i in {0..9}; do cat < -file0$i; done```
 
 Level 5 → Level 6
+- this is where things started ramping up a bit. i started to employ chat gpt, but limited my questions so as to not just get a full working script. i lacked a bit of knowledge here so i just wanted to see what pieces i could mash together. this is what i came up with: ```find ./ -type f -exec head -n 1 {} \; | awk 'length == 32'```
 
 Level 6 → Level 7
+- from here i stopped yoloing and read the instructions for each challenge
 
 Level 7 → Level 8
 
