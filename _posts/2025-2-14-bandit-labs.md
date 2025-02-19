@@ -43,7 +43,8 @@ Level 7 → Level 8
 - This one was very straightforward, just based off of how grep works by default; it will print the whole line. You can also add the line number here, in case the instructions meant above or below, not just besides. ```cat data.txt | grep -n millionth```. 
 
 Level 8 → Level 9
-
+- This one is also pretty straightforward, as it reminds you in the instructions which commands you could use. We sort things first, then count the number of times each string is present. ```sort data.txt | uniq -c```
+  
 Level 9 → Level 10
 
 Level 10 → Level 11
