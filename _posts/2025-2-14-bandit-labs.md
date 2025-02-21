@@ -46,10 +46,15 @@ Level 8 → Level 9
 - This one is also pretty straightforward, as it reminds you in the instructions which commands you could use. We sort things first, then count the number of times each string is present. ```sort data.txt | uniq -c```
   
 Level 9 → Level 10
+- The key words that tipped me off here were 'human readable', which instantly tells me to use ```strings```. It also says that the pass is next to several equals signs, so a simple pipe to ```grep``` will take care of this. ```strings data.txt | grep ===```
 
 Level 10 → Level 11
-
+- Here I started off running ```head``` against the data file, to learn that it is only one line. As stated in the instructions, it is encoded with base64. Piping it to ```base64``` will be the easiest way to go here. ```cat data.txt | base64 -d```
+  
 Level 11 → Level 12
+- Just based off the instructions, we immediately know it is a caesar cipher, or similar substitution cipher, one of the oldest encryption techniques. Every time I have dealt with caesar ciphers I have always ran it through on online tool. I have never done it through the command line, so this will be interesting. Some googleing leads me to the ```tr``` command, which is installed on the host. I have never heard of it, but I see that it is one of the recommended commands from the instructions.
+
+I came across this suggestion in a github gist ```echo "GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT" | tr '[N-ZA-M]' '[A-Z]'```, but it did not work out of the box, so I had to dig into why. Not surprisingly, the ```tr``` options are uppercase for a reason. Here I am working with at least some lowercase, so I had to make at least some of the options lower case as well. I was not sure how to do it in one single command, so I just piped the output of lowercase into the uppercase command. ``` cat data.txt | tr [n-za-m] [a-z] | tr [N-ZA-M] [A-Z]```
 
 Level 12 → Level 13
 
