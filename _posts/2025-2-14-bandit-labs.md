@@ -54,7 +54,9 @@ Level 10 → Level 11
 Level 11 → Level 12
 - Just based off the instructions, we immediately know it is a caesar cipher, or similar substitution cipher, one of the oldest encryption techniques. Every time I have dealt with caesar ciphers I have always ran it through on online tool. I have never done it through the command line, so this will be interesting. Some googleing leads me to the ```tr``` command, which is installed on the host. I have never heard of it, but I see that it is one of the recommended commands from the instructions.
 
-I came across this suggestion in a github gist ```echo "GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT" | tr '[N-ZA-M]' '[A-Z]'```, but it did not work out of the box, so I had to dig into why. Not surprisingly, the ```tr``` options are uppercase for a reason. Here I am working with at least some lowercase, so I had to make at least some of the options lower case as well. I was not sure how to do it in one single command, so I just piped the output of lowercase into the uppercase command. ``` cat data.txt | tr [n-za-m] [a-z] | tr [N-ZA-M] [A-Z]```
+- I came across this suggestion in a github gist ```echo "GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT" | tr '[N-ZA-M]' '[A-Z]'```, but it did not work out of the box, so I had to dig into why. Not surprisingly, the ```tr``` options are uppercase for a reason. Here I am working with at least some lowercase, so I had to make at least some of the options lower case as well. I was not sure how to do it in one single command, so I just piped the output of lowercase into the uppercase command. ``` cat data.txt | tr [n-za-m] [a-z] | tr [N-ZA-M] [A-Z]```
+
+- https://gist.github.com/IQAndreas/030b8e91a8d9a407caa6
 
 Level 12 → Level 13
 
