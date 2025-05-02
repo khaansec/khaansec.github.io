@@ -95,3 +95,5 @@ foreach ($line in $lineArray)
 
 From here on out, i got a decryptor made from ChatGPT (Cyberchef's AES decrypt wasn't working well since it resulted in binary data).
 This decryptor can be found here: https://github.com/khaansec/Black-Hat-Python/blob/cd6412b73bc699ac49acde2369c3f808c9d1f899/decrypt_aes_payload.py
+
+This is the end of the obfuscation that i saw. A fun little project.
